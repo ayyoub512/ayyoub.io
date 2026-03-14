@@ -510,6 +510,68 @@ a:hover { color: var(--accent-color); }
   100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
 }
 
+@keyframes float-4 {
+  0% { transform: translateY(0) rotate(0deg) scale(1.1); }
+  50% { transform: translateY(-10px) rotate(-10deg) scale(0.9); }
+  100% { transform: translateY(0) rotate(0deg) scale(1.1); }
+}
+
+/* --- Hero Geometric Web Animations --- */
+@keyframes spinSlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinSlowReverse {
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.hero-geometric-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transform: translate(-50%, -50%);
+}
+
+.hero-ring-1 {
+  width: 140vw; height: 140vw;
+  animation: spinSlow 90s linear infinite;
+  border: 1px dashed rgba(0, 0, 0, 0.05);
+}
+.hero-ring-2 {
+  width: 110vw; height: 110vw;
+  animation: spinSlowReverse 120s linear infinite;
+}
+.hero-ring-3 {
+  width: 80vw; height: 80vw;
+  animation: spinSlow 60s linear infinite;
+  border-width: 2px;
+}
+.hero-ring-4 {
+  width: 50vw; height: 50vw;
+  animation: spinSlowReverse 45s linear infinite;
+  border: 1px dashed rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  .hero-ring-1 { width: 200vw; height: 200vw; }
+  .hero-ring-2 { width: 160vw; height: 160vw; }
+  .hero-ring-3 { width: 120vw; height: 120vw; }
+  .hero-ring-4 { width: 80vw; height: 80vw; }
+}
+
 .section-contact .text-gradient {
   background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
   -webkit-background-clip: text;

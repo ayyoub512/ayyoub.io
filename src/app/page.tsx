@@ -90,7 +90,13 @@ export default function Home() {
 
              {/* Centered Active Image */}
              {/* eslint-disable-next-line @next/next/no-img-element */}
-             <img src={activeScreenshots[modalSlideIndex]} alt={`Screenshot ${modalSlideIndex + 1}`} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', animation: 'fadeIn 0.3s ease' }} />
+             <img src={activeScreenshots[modalSlideIndex]} alt={`Screenshot ${modalSlideIndex + 1}`} loading="eager" decoding="async" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', animation: 'fadeIn 0.3s ease' }} />
+             
+             {/* Hidden Preloader for Next Image (Zero-Throttle Optimization) */}
+             {activeScreenshots[modalSlideIndex + 1] && (
+               /* eslint-disable-next-line @next/next/no-img-element */
+               <img src={activeScreenshots[modalSlideIndex + 1]} alt="preload next" loading="eager" decoding="async" style={{ display: 'none' }} aria-hidden="true" />
+             )}
 
              {/* Right Arrow */}
              <button 
@@ -156,7 +162,14 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '6rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div className="fluid-glow fluid-glow-hero"></div>
+        
+        {/* Animated Geometric Web Background */}
+        <div className="hero-geometric-bg">
+           <div className="hero-ring hero-ring-1"></div>
+           <div className="hero-ring hero-ring-2"></div>
+           <div className="hero-ring hero-ring-3"></div>
+           <div className="hero-ring hero-ring-4"></div>
+        </div>
         
         {/* Anti-Gravity Shapes */}
         <div className="shape-layer">
@@ -389,7 +402,7 @@ export default function Home() {
                   {/* Image Container */}
                   <div style={{ flexGrow: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                     <img src={musekitsScreenshots[0]} alt="Musekits Hero" style={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }} />
+                     <img src={musekitsScreenshots[0]} alt="Musekits Hero" loading="lazy" decoding="async" style={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }} />
                      
                      {/* Hover Overlay Hint */}
                      <div className="hover-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)', opacity: 0, transition: 'opacity 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
