@@ -18,6 +18,10 @@
   padding: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 html, body {
   background-color: var(--bg-color);
   color: var(--text-primary);
@@ -151,9 +155,9 @@ a:hover { color: var(--accent-color); }
   top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
   border: 1px solid var(--card-border);
   border-radius: 99px;
   padding: 0.75rem 1.5rem;
@@ -163,6 +167,39 @@ a:hover { color: var(--accent-color); }
   z-index: 100;
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav-pill {
+    width: 90%;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    justify-content: flex-start;
+    border-radius: 99px; /* restore oval shape */
+  }
+  
+  .nav-pill::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Make logo and links stand side by side inline */
+  .nav-pill > div:first-child {
+    width: auto;
+    text-align: left;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    white-space: nowrap;
+  }
 }
 
 .nav-link {
@@ -253,24 +290,48 @@ a:hover { color: var(--accent-color); }
   animation: float 6s ease-in-out infinite;
 }
 
-/* Kinetic Text Animation */
-@keyframes slideWord {
-  0%, 20% { content: "inspire."; }
-  25%, 45% { content: "scale."; }
-  50%, 70% { content: "convert."; }
-  75%, 95% { content: "innovate."; }
-  100% { content: "inspire."; }
-}
-
-.kinetic-text::after {
-  content: "inspire.";
-  animation: slideWord 8s linear infinite;
+/* Smooth Vertical Kinetic Text */
+.word-slider-container {
   display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  height: clamp(3.5rem, 8vw, 6rem);
+  line-height: clamp(3.5rem, 8vw, 6rem);
+  position: relative;
+  top: 0.1em;
 }
 
+.word-slider {
+  display: flex;
+  flex-direction: column;
+  animation: slideWords 12s cubic-bezier(0.85, 0, 0.15, 1) infinite;
+}
 
+.word-slider span {
+  display: block;
+  height: clamp(3.5rem, 8vw, 6rem);
+}
 
+@keyframes slideWords {
+  0%, 15% { transform: translateY(0); }
+  25%, 40% { transform: translateY(-100%); }
+  50%, 65% { transform: translateY(-200%); }
+  75%, 90% { transform: translateY(-300%); }
+  100% { transform: translateY(-400%); }
+}
 
+/* IntersectionObserver Scroll Reveals */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Experience Timeline Glowing Bar */
 .timeline-line {
@@ -407,7 +468,7 @@ a:hover { color: var(--accent-color); }
 
 .shape {
   position: absolute;
-  opacity: 0.15;
+  opacity: 0.1;
   color: var(--accent-color);
 }
 .shape-1 { animation: float-1 8s ease-in-out infinite; top: 20%; left: 10%; width: 80px; height: 80px; }
@@ -417,3 +478,81 @@ a:hover { color: var(--accent-color); }
 .shape-5 { animation: float-2 14s ease-in-out infinite reverse; bottom: 30%; right: 25%; width: 70px; height: 70px; }
 .shape-6 { animation: float-3 18s ease-in-out infinite; top: 40%; right: 30%; width: 90px; height: 90px; opacity: 0.1; }
 
+/* Responsive Helpers & Contact Section */
+
+.section-contact {
+  position: relative;
+  background: transparent;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.aurora-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vw;
+  height: 150vw;
+  max-width: 1200px;
+  max-height: 1200px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%, rgba(251, 146, 60, 0.15), rgba(250, 204, 21, 0.1), transparent 60%);
+  filter: blur(100px);
+  animation: auroraSwirl 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes auroraSwirl {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  33% { transform: translate(-45%, -55%) rotate(120deg) scale(1.1); }
+  66% { transform: translate(-55%, -45%) rotate(240deg) scale(0.9); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+.section-contact .text-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-contact .btn-primary {
+  background: #fff;
+  color: #0f172a;
+}
+.section-contact .btn-primary:after {
+  background: rgba(255,255,255,0.2);
+}
+
+.grid-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.grid-project {
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .grid-about, .grid-project {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    width: 90%;
+  }
+
+  /* Fix overlapping About card on mobile */
+  .about-overlay-card {
+    position: relative !important;
+    left: 0 !important;
+    top: -1.5rem !important;
+    width: 100% !important;
+  }
+}

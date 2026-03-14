@@ -1,21 +1,156 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 
 export default function Home() {
+  // Track active section for ScrollSpy Navbar
+  const [activeSection, setActiveSection] = useState('hero');
+
+  useEffect(() => {
+    // Scroll Reveal Observer
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.scroll-reveal').forEach((el) => {
+      revealObserver.observe(el);
+    });
+
+    // ScrollSpy Observer for Navbar
+    const scrollSpyObserver = new IntersectionObserver(
+      (entries) => {
+        // Find the section that is most visible
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 } // Section must be 50% visible to be considered active
+    );
+
+    document.querySelectorAll('section[id]').forEach((el) => {
+      scrollSpyObserver.observe(el);
+    });
+
+    return () => {
+      revealObserver.disconnect();
+      scrollSpyObserver.disconnect();
+    };
+  }, []);
+
+  const [activeScreenshots, setActiveScreenshots] = useState<string[] | null>(null);
+  const [modalSlideIndex, setModalSlideIndex] = useState(0);
+  const [musekitsSlide, setMusekitsSlide] = useState(0);
+
+  const musekitsScreenshots = [
+    "https://media.licdn.com/dms/image/v2/D4E2DAQGF_MLkmTPoKw/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733155495693?e=1774058400&v=beta&t=01JoRHJdHKAYDVlh_ewf5f6z2plybEnUMeG19BMCrpM",
+    "https://media.licdn.com/dms/image/v2/D4E2DAQEk6N8U5SVjlw/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733155084594?e=1774058400&v=beta&t=QEqwA2lAGxxO9VNmkiR9U6kq2dETzHoIAlGNSUv6d2Q",
+    "https://media.licdn.com/dms/image/v2/D4E2DAQHq4TZmLbLtNg/profile-treasury-image-shrink_1920_1920/profile-treasury-image-shrink_1920_1920/0/1733155842692?e=1774058400&v=beta&t=PmSrWdeTAT-2-x5JecFdNu2Y_8ACJJVST5j9QEckA2E"
+  ];
+
+  const vibeSyncScreenshots = [
+    "https://musekits.com/placeholder-vibe-1.jpg", // The user did not provide actual Vibe Sync URLs, using placeholder string logic or we can just use external images
+    "https://musekits.com/placeholder-vibe-2.jpg"
+  ];
+
   return (
     <main>
+      {/* Full-Screen Screenshots Modal */}
+      {activeScreenshots && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(30px)', display: 'flex', flexDirection: 'column', animation: 'fadeIn 0.3s ease' }}>
+          
+          <div style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+             <div style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '500' }}>Project Screenshots</div>
+             <button 
+               onClick={() => { setActiveScreenshots(null); setModalSlideIndex(0); }} 
+               style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', transition: 'background 0.2s' }}
+               onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+               onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+             >✕</button>
+          </div>
+          
+          <div style={{ flexGrow: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', overflow: 'hidden' }}>
+             
+             {/* Left Arrow */}
+             <button 
+               onClick={() => setModalSlideIndex(prev => (prev === 0 ? activeScreenshots.length - 1 : prev - 1))}
+               style={{ position: 'absolute', left: '2rem', zIndex: 10, background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', width: '60px', height: '60px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', backdropFilter: 'blur(10px)', transition: 'all 0.2s' }}
+               onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+               onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+             >
+               ‹
+             </button>
+
+             {/* Centered Active Image */}
+             {/* eslint-disable-next-line @next/next/no-img-element */}
+             <img src={activeScreenshots[modalSlideIndex]} alt={`Screenshot ${modalSlideIndex + 1}`} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', animation: 'fadeIn 0.3s ease' }} />
+
+             {/* Right Arrow */}
+             <button 
+               onClick={() => setModalSlideIndex(prev => (prev === activeScreenshots.length - 1 ? 0 : prev + 1))}
+               style={{ position: 'absolute', right: '2rem', zIndex: 10, background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', width: '60px', height: '60px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', backdropFilter: 'blur(10px)', transition: 'all 0.2s' }}
+               onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+               onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+             >
+               ›
+             </button>
+          </div>
+
+          {/* Dot Indicators */}
+          <div style={{ padding: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'center', gap: '12px' }}>
+            {activeScreenshots.map((_, idx) => (
+               <button 
+                 key={idx} 
+                 onClick={() => setModalSlideIndex(idx)}
+                 style={{ width: '12px', height: '12px', borderRadius: '50%', border: 'none', padding: 0, background: modalSlideIndex === idx ? '#fff' : 'rgba(255,255,255,0.2)', cursor: 'pointer', transition: 'all 0.2s' }}
+               />
+            ))}
+          </div>
+
+        </div>
+      )}
+
       <div className="glow-bg"></div>
       
       {/* Navigation */}
       <nav className="nav-pill">
-        <div style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-          Ayyoub
+        {/* Native Logo */}
+        <div style={{ fontWeight: '700', fontSize: '1.2rem', color: 'var(--text-primary)' }}>
+          DevPortfolio<span style={{ color: 'var(--accent-color)' }}>.</span>
         </div>
+        
+        {/* Navigation Links */}
         <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem' }}>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#experience" className="nav-link">Experience</a>
-          <a href="#projects" className="nav-link">Work</a>
-          <a href="#skills" className="nav-link">Skills</a>
-          <a href="#contact" className="nav-link">Contact</a>
+        {[
+          { name: 'About', href: '#about' },
+          { name: 'Experience', href: '#experience' },
+          { name: 'Work', href: '#projects' },
+          { name: 'Skills', href: '#skills' },
+          { name: 'Contact', href: '#contact' }
+        ].map((link) => {
+          const isActive = `#${activeSection}` === link.href;
+          return (
+            <a 
+              key={link.name} 
+              href={link.href} 
+              className="nav-link"
+              style={{
+                color: isActive ? 'var(--accent-color)' : 'var(--text-secondary)',
+                fontWeight: isActive ? '600' : '400',
+                opacity: isActive ? 1 : 0.8
+              }}
+            >
+              {link.name}
+            </a>
+          );
+        })}
         </div>
       </nav>
 
@@ -42,7 +177,15 @@ export default function Home() {
             </div>
             <h1 className="animate-fade-in delay-1" style={{ marginBottom: '1.5rem', maxWidth: '900px', fontSize: 'clamp(3.5rem, 8vw, 6rem)', lineHeight: '1.1' }}>
               Building digital experiences that <br />
-              <span className="text-gradient kinetic-text" style={{ paddingRight: '1rem' }}></span>
+              <div className="word-slider-container text-gradient">
+                <div className="word-slider">
+                  <span>inspire.</span>
+                  <span>scale.</span>
+                  <span>convert.</span>
+                  <span>innovate.</span>
+                  <span>inspire.</span>
+                </div>
+              </div>
             </h1>
             <p className="animate-fade-in delay-2" style={{ fontSize: '1.3rem', marginBottom: '3rem', maxWidth: '600px', color: 'var(--text-secondary)' }}>
               I'm a Full-Stack Web Developer with 4+ years of experience building high-traffic websites, custom web applications, and scalable cloud architectures.
@@ -67,13 +210,19 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section id="about" className="section" style={{ position: 'relative' }}>
          <div className="fluid-glow fluid-glow-about"></div>
          
+         {/* Subtly Scattered Native Shapes */}
+         <div className="shape-layer" style={{ position: 'absolute' }}>
+           <div className="shape" style={{ top: '15%', right: '5%', opacity: 0.03, fontSize: '3rem' }}>○</div>
+           <div className="shape" style={{ bottom: '10%', left: '8%', opacity: 0.03, fontSize: '2rem' }}>✕</div>
+         </div>
+         
          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <h2 className="animate-fade-in"><span className="text-gradient">01.</span> About Me</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'center' }}>
-               <div className="animate-fade-in delay-1" style={{ paddingRight: '2rem' }}>
+            <h2 className="scroll-reveal"><span className="text-gradient">01.</span> About Me</h2>
+            <div className="grid-about">
+               <div className="scroll-reveal" style={{ paddingRight: '2rem', transitionDelay: '0.1s' }}>
                   <p style={{ fontSize: '1.2rem', marginBottom: '1.5rem', lineHeight: '1.8' }}>
                     Hello! I'm a Full-Stack Web Developer with over 4 years of experience building high-traffic websites and custom web applications.
                   </p>
@@ -86,7 +235,7 @@ export default function Home() {
                </div>
                
                {/* Asymmetric Overlapping Card */}
-               <div className="card animate-fade-in delay-2" style={{ position: 'relative', left: '-2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'var(--card-bg)', backdropFilter: 'blur(20px)', zIndex: 2, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)' }}>
+               <div className="card about-overlay-card scroll-reveal" style={{ position: 'relative', left: '-2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'var(--card-bg)', backdropFilter: 'blur(20px)', zIndex: 2, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)', transitionDelay: '0.2s' }}>
                  <h3 style={{ fontSize: '1.3rem', borderBottom: '1px solid var(--card-border)', paddingBottom: '1rem', color: 'var(--text-primary)' }}>Quick Facts</h3>
                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)' }}>
                    <li><strong style={{ color: 'var(--text-primary)' }}>Education:</strong> St. Lawrence College (Diploma)</li>
@@ -100,10 +249,17 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section id="experience" className="section" style={{ position: 'relative' }}>
          <div className="fluid-glow fluid-glow-exp"></div>
+         
+         {/* Subtly Scattered Native Shapes */}
+         <div className="shape-layer" style={{ position: 'absolute' }}>
+           <div className="shape" style={{ top: '40%', left: '85%', opacity: 0.03, fontSize: '2.5rem' }}>△</div>
+           <div className="shape" style={{ top: '70%', left: '10%', opacity: 0.03, fontSize: '1.5rem' }}>□</div>
+         </div>
+         
          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <h2 className="animate-fade-in"><span className="text-gradient">02.</span> Experience</h2>
+            <h2 className="scroll-reveal"><span className="text-gradient">02.</span> Experience</h2>
             
             {/* Timeline Wrapper */}
             <div style={{ position: 'relative', paddingLeft: '3rem', maxWidth: '850px' }}>
@@ -111,7 +267,7 @@ export default function Home() {
                
                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                  
-                 <div className="card animate-fade-in delay-1" style={{ position: 'relative' }}>
+                 <div className="card scroll-reveal" style={{ position: 'relative', transitionDelay: '0.1s' }}>
                    {/* Timeline Node */}
                    <div style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
                    
@@ -127,7 +283,7 @@ export default function Home() {
                    </ul>
                  </div>
 
-                 <div className="card animate-fade-in delay-2" style={{ position: 'relative' }}>
+                 <div className="card scroll-reveal" style={{ position: 'relative', transitionDelay: '0.2s' }}>
                    {/* Timeline Node */}
                    <div style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
                    
@@ -164,11 +320,15 @@ export default function Home() {
                </div>
 
                <div className="card animate-fade-in delay-2" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                  <div style={{ fontSize: '3rem' }}>☁️</div>
-                  <div>
+                  <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255, 153, 0, 0.1)', borderRadius: '12px', color: '#ff9900' }}>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10z"></path><path d="M12 8v4l3 3"></path></svg>
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
                     <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>AWS Certified Developer</h3>
                     <p style={{ margin: '0.5rem 0', fontSize: '0.95rem' }}>Obtained AWS DVA-C02 certification, solidifying my knowledge in AWS Cloud offerings.</p>
-                    <span className="badge" style={{ marginTop: '0.5rem', display: 'inline-block' }}>DVA-C02</span>
+                  </div>
+                  <div>
+                    <a href="https://aws.amazon.com/verification" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Verify ↗</a>
                   </div>
                </div>
 
@@ -176,23 +336,25 @@ export default function Home() {
          </div>
       </section>
       {/* Projects Section */}
-      <section id="projects" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section id="projects" className="section" style={{ position: 'relative' }}>
         <div className="fluid-glow fluid-glow-work"></div>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <h2 className="animate-fade-in"><span className="text-gradient">04.</span> Selected Works</h2>
+            <h2 className="scroll-reveal"><span className="text-gradient">04.</span> Selected Works</h2>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '5rem' }}>
               
-              {/* Project 1: Musekits */}
-              <div className="card animate-fade-in delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '0', overflow: 'hidden' }}>
-                <div style={{ padding: '2.5rem 2.5rem 0 2.5rem' }}>
+              {/* Project 1: Musekits (Asymmetrical Side-by-Side Flex Layout) */}
+              <div className="card scroll-reveal" style={{ display: 'flex', flexWrap: 'wrap', padding: '0', overflow: 'hidden', transitionDelay: '0.1s' }}>
+                
+                {/* Text Content Left */}
+                <div style={{ flex: '1 1 400px', padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                     <h3 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', margin: 0 }}>Muse Kits <span style={{ color: 'var(--text-secondary)', fontWeight: '400', fontSize: '1.2rem' }}>(E-Commerce)</span></h3>
                   </div>
                   <p style={{ marginBottom: '1.5rem', fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
                     A high-traffic e-commerce platform supporting 50,000+ monthly visitors. I developed the entire end-to-end architecture, including a custom one-page checkout, advanced payment routing, and full website redesign that improved load times by 30%.
                   </p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '2rem' }}>
                     <span className="badge">Shopify</span>
                     <span className="badge">AWS Lambda</span>
                     <span className="badge">DynamoDB</span>
@@ -200,30 +362,48 @@ export default function Home() {
                     <span className="badge">Node.js</span>
                     <span className="badge">Google Maps API</span>
                   </div>
+                  
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                    <a href="https://musekits.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem' }}>Visit Site ↗</a>
+                    <button onClick={() => setActiveScreenshots(musekitsScreenshots)} className="btn btn-outline" style={{ padding: '0.8rem 1.5rem' }}>View Gallery UI</button>
+                  </div>
                 </div>
                 
-                {/* Horizontal CSS Slider for Musekits Screenshots + Mac Window Frame */}
-                <div style={{ background: 'var(--bg-color)', borderTop: '1px solid var(--card-border)' }}>
-                  <div className="mac-dots">
-                    <div className="mac-dot"></div><div className="mac-dot"></div><div className="mac-dot"></div>
-                  </div>
-                  <div className="slider-container" style={{ padding: '1rem', margin: 0 }}>
-                     {[
-                       "https://media.licdn.com/dms/image/v2/D4E2DAQGF_MLkmTPoKw/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733155495693?e=1774058400&v=beta&t=01JoRHJdHKAYDVlh_ewf5f6z2plybEnUMeG19BMCrpM",
-                       "https://media.licdn.com/dms/image/v2/D4E2DAQEk6N8U5SVjlw/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733155084594?e=1774058400&v=beta&t=QEqwA2lAGxxO9VNmkiR9U6kq2dETzHoIAlGNSUv6d2Q",
-                       "https://media.licdn.com/dms/image/v2/D4E2DAQHq4TZmLbLtNg/profile-treasury-image-shrink_1920_1920/profile-treasury-image-shrink_1920_1920/0/1733155842692?e=1774058400&v=beta&t=PmSrWdeTAT-2-x5JecFdNu2Y_8ACJJVST5j9QEckA2E"
-                     ].map((imgUrl, i) => (
-                       <div key={i} className="slider-item" style={{ aspectRatio: '16/9', borderRadius: '4px' }}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={imgUrl} alt={`Musekits Screenshot ${i + 1}`} />
+                {/* Clickable Hero Image Right */}
+                <div 
+                  style={{ flex: '1 1 400px', background: 'var(--bg-color)', position: 'relative', display: 'flex', flexDirection: 'column', borderLeft: '1px solid var(--card-border)', cursor: 'pointer', overflow: 'hidden' }}
+                  onClick={() => setActiveScreenshots(musekitsScreenshots)}
+                  onMouseEnter={(e) => {
+                    const overlay = e.currentTarget.querySelector('.hover-overlay') as HTMLElement;
+                    if (overlay) overlay.style.opacity = '1';
+                    const img = e.currentTarget.querySelector('img') as HTMLElement;
+                    if (img) img.style.transform = 'scale(1.02)';
+                  }}
+                  onMouseLeave={(e) => {
+                    const overlay = e.currentTarget.querySelector('.hover-overlay') as HTMLElement;
+                    if (overlay) overlay.style.opacity = '0';
+                    const img = e.currentTarget.querySelector('img') as HTMLElement;
+                    if (img) img.style.transform = 'scale(1)';
+                  }}
+                >
+                  {/* Image Container */}
+                  <div style={{ flexGrow: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                     {/* eslint-disable-next-line @next/next/no-img-element */}
+                     <img src={musekitsScreenshots[0]} alt="Musekits Hero" style={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }} />
+                     
+                     {/* Hover Overlay Hint */}
+                     <div className="hover-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)', opacity: 0, transition: 'opacity 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                       <div style={{ background: 'rgba(255,255,255,0.9)', color: '#000', padding: '0.8rem 1.5rem', borderRadius: '99px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                         View Gallery
                        </div>
-                     ))}
+                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Project 2: Vibe Sync */}
-              <div className="card animate-fade-in delay-2" style={{ display: 'grid', gridTemplateColumns: '350px minmax(0, 1fr)', gap: '3rem', alignItems: 'center' }}>
+              <div className="card grid-project scroll-reveal" style={{ transitionDelay: '0.2s' }}>
                 {/* Visual Placeholder for iOS App */}
                 <div style={{ width: '100%', aspectRatio: '9/19', maxWidth: '280px', margin: '0 auto', background: 'rgba(0,0,0,0.3)', borderRadius: '32px', border: '4px solid var(--card-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: 'var(--text-secondary)' }}>
                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '1rem' }}><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
@@ -245,6 +425,50 @@ export default function Home() {
                     <span className="badge">AVFoundation (Camera)</span>
                     <span className="badge">Node.js Backend</span>
                   </div>
+                  
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <a href="#" className="btn btn-primary" style={{ opacity: 0.5, cursor: 'not-allowed' }}>App Store (Soon)</a>
+                    <button onClick={() => setActiveScreenshots(vibeSyncScreenshots)} className="btn btn-outline" style={{ display: 'none' }}>View UI Previews</button>
+                    <span style={{ alignSelf: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', fontStyle: 'italic' }}>Private Beta</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Minor Projects Grid */}
+              <div className="scroll-reveal" style={{ marginTop: '4rem', transitionDelay: '0.3s' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>Other Notable Projects</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                  
+                  {/* Minor Project A */}
+                  <a href="#" className="card" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1.5rem', textDecoration: 'none' }}>
+                    <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', color: 'var(--text-secondary)', opacity: 0.5, transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.5'}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <div style={{ width: '100%', height: '140px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>📊</div>
+                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-primary)' }}>DataDash Analytics</h4>
+                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>A real-time dashboard built with React and D3.js handling 1M+ daily data points.</p>
+                  </a>
+
+                  {/* Minor Project B */}
+                  <a href="#" className="card" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1.5rem', textDecoration: 'none' }}>
+                    <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', color: 'var(--text-secondary)', opacity: 0.5, transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.5'}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <div style={{ width: '100%', height: '140px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🤖</div>
+                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-primary)' }}>Lexi AI</h4>
+                    <p style={{ margin: '0', fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>Internal company Discord bot integrated with OpenAI for automated code reviews.</p>
+                  </a>
+
+                  {/* Minor Project C */}
+                  <a href="#" className="card" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1.5rem', textDecoration: 'none' }}>
+                    <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', color: 'var(--text-secondary)', opacity: 0.5, transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.5'}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <div style={{ width: '100%', height: '140px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>⚡</div>
+                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-primary)' }}>Turbo Serve</h4>
+                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>Ultra-fast Go microservice acting as a reverse proxy for legacy architecture.</p>
+                  </a>
+
                 </div>
               </div>
 
@@ -254,6 +478,12 @@ export default function Home() {
 
       {/* Skills Section */}
       <section id="skills" className="section" style={{ position: 'relative' }}>
+         {/* Subtly Scattered Native Shapes */}
+         <div className="shape-layer" style={{ position: 'absolute' }}>
+           <div className="shape" style={{ top: '20%', left: '5%', opacity: 0.03, fontSize: '4rem' }}>◇</div>
+           <div className="shape" style={{ bottom: '15%', right: '10%', opacity: 0.03, fontSize: '2rem' }}>○</div>
+         </div>
+         
          <div className="glow-bg" style={{ top: '50%', left: 'auto', right: '-200px' }}></div>
          <div className="container">
             <h2 className="animate-fade-in"><span className="text-gradient">05.</span> Technical Arsenal</h2>
@@ -312,15 +542,33 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="section" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-         <div className="container">
-            <h2 className="animate-fade-in" style={{ marginBottom: '1rem' }}><span className="text-gradient">04.</span> What's Next?</h2>
-            <h1 className="animate-fade-in delay-1" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '2rem' }}>Get In Touch</h1>
-            <p className="animate-fade-in delay-2" style={{ maxWidth: '600px', margin: '0 auto 3rem auto', fontSize: '1.2rem' }}>
-              I'm currently looking for new opportunities. Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
-            </p>
-            <div className="animate-fade-in delay-3">
-              <a href="mailto:hi@ayyoub.io" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>Say Hello</a>
+      <section id="contact" className="section section-contact" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', textAlign: 'center', position: 'relative' }}>
+         {/* Localized Floating Shapes for CTA Frame */}
+         <div className="shape-layer">
+            <div className="shape shape-4" style={{ top: '10%', right: '15%' }}>✖</div>
+            <div className="shape shape-5" style={{ bottom: '20%', left: '15%' }}>●</div>
+            <div className="shape shape-6" style={{ top: '50%', left: '80%' }}>▲</div>
+         </div>
+         
+         <div className="aurora-bg"></div>
+         
+         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+            {/* Massive Deep Contrast CTA Card */}
+            <div className="scroll-reveal" style={{ maxWidth: '900px', margin: '0 auto', background: 'linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%)', borderRadius: '32px', padding: '5rem 2rem', boxShadow: '0 30px 60px -15px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <h2 style={{ marginBottom: '1rem', color: 'rgba(255,255,255,0.8)' }}><span className="text-gradient">04.</span> What's Next?</h2>
+              <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '2rem', color: '#fff', letterSpacing: '-0.02em' }}>Get In Touch</h1>
+              <p style={{ maxWidth: '600px', margin: '0 auto 3rem auto', fontSize: '1.25rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6' }}>
+                I'm currently looking for new opportunities. Whether you have a question, a project idea, or just want to say hi, my inbox is always open. Let's build something beautiful.
+              </p>
+              <div>
+                <a href="mailto:hi@ayyoub.io" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', background: '#fff', color: '#0f172a', padding: '1.2rem 3rem', fontSize: '1.2rem', fontWeight: '600', borderRadius: '99px', textDecoration: 'none', transition: 'all 0.3s', boxShadow: '0 10px 25px -5px rgba(255,255,255,0.3)' }}
+                   onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 20px 35px -5px rgba(255,255,255,0.4)'; }}
+                   onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(255,255,255,0.3)'; }}
+                >
+                  Say Hello
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
             </div>
          </div>
       </section>
