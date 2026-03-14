@@ -8,7 +8,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="nav-pill">
         <div style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-          Ayyoub.io
+          Ayyoub
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.9rem' }}>
           <a href="#about" className="nav-link">About</a>
@@ -54,10 +54,10 @@ export default function Home() {
                  Resume
               </a>
               <div style={{ display: 'flex', gap: '1rem', marginLeft: '1rem' }}>
-                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }} aria-label="LinkedIn">
+                 <a href="https://www.linkedin.com/in/ouakkaha" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }} aria-label="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                  </a>
-                 <a href="https://upwork.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }} aria-label="UpWork">
+                 <a href="https://www.upwork.com/freelancers/~015d699868887682f5" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }} aria-label="UpWork">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.062-1.227l-1.723 5.488a5.534 5.534 0 0 1-5.3 3.847c-2.956 0-5.361-2.406-5.361-5.362S5.524 10.54 8.476 10.54c1.111 0 2.158.349 3.037.954l1.378-4.39A7.058 7.058 0 0 1 18.561 2.94c3.9 0 7.065 3.167 7.065 7.066s-3.165 7.066-7.065 7.066zM8.476 19.34c-1.897 0-3.44-1.543-3.44-3.44s1.543-3.44 3.44-3.44c.485 0 .942.102 1.36.286l-1.353 4.31a3.52 3.52 0 0 1-2.007.284zm10.085-7.79c-2.348 0-4.25-1.9-4.25-4.25S16.213 3.05 18.561 3.05 22.81 4.95 22.81 7.3s-1.896 4.25-4.25 4.25z"></path></svg>
                  </a>
               </div>
@@ -320,7 +320,7 @@ export default function Home() {
               I'm currently looking for new opportunities. Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
             </p>
             <div className="animate-fade-in delay-3">
-              <a href="mailto:hello@example.com" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>Say Hello</a>
+              <a href="mailto:hi@ayyoub.io" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>Say Hello</a>
             </div>
          </div>
       </section>
@@ -328,7 +328,7 @@ export default function Home() {
       {/* Footer */}
       <footer style={{ padding: '2rem 0', textAlign: 'center', borderTop: '1px solid var(--card-border)' }}>
         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-          Designed & Built by Alex <br/>
+          Designed & Built with ❤️ by Ayyoub <br/>
           <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>Powered by Next.js & React</span>
         </p>
       </footer>
