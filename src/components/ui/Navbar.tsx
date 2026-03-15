@@ -17,7 +17,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
     <nav className="nav-pill">
       {/* Native Logo */}
       <div style={{ fontWeight: '700', fontSize: '1.2rem', color: 'var(--text-primary)' }}>
-        DevPortfolio<span style={{ color: 'var(--accent-color)' }}>.</span>
+        Ayyoub<span style={{ color: 'var(--accent-color)' }}>.</span>
       </div>
       
       {/* Navigation Links */}

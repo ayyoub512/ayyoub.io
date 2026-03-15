@@ -15,44 +15,77 @@ export default function About() {
        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <h2 className="scroll-reveal"><span className="text-gradient">01.</span> About Me</h2>
           
-          <div className="grid-bento">
-            {/* Mission Statement (Large Span) */}
-            <div className="bento-card bento-col-span-8 bento-row-span-2 scroll-reveal" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div className="bento-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-              </div>
-              <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Bridging the gap between design & engineering.</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
-                I'm a Full Stack Engineer who obsessively focuses on both pixel-perfect frontends and scalable, bulletproof backends. I don't just write code; I look at the holistic product experience to ensure what we build is beautiful, fast, and secure.
-              </p>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.7' }}>
-                When I'm not architecting cloud infrastructure or refining CSS micro-interactions, I'm usually exploring new open-source tooling.
-              </p>
+          <div className="about-split-layout" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: '5rem',
+            marginTop: '3rem',
+            alignItems: 'center'
+          }}>
+            
+            {/* Left Column: Visual/Portrait Anchor */}
+            <div className="scroll-reveal" style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+               {/* Decorative Orbital Rings behind Portrait */}
+               <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', aspectRatio: '1', border: '1px dashed rgba(59, 130, 246, 0.2)', borderRadius: '50%', animation: 'spinSlow 40s linear infinite' }}></div>
+               <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '90%', aspectRatio: '1', border: '1px solid rgba(139, 92, 246, 0.1)', borderRadius: '50%', animation: 'spinSlowReverse 30s linear infinite' }}></div>
+               
+               {/* Portrait Container */}
+               <div style={{ 
+                 position: 'relative', 
+                 zIndex: 2,
+                 width: '100%', 
+                 maxWidth: '400px', 
+                 aspectRatio: '4/5', 
+                 background: 'linear-gradient(145deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)', 
+                 backdropFilter: 'blur(20px)',
+                 borderRadius: '32px',
+                 border: '1px solid rgba(255,255,255,0.4)',
+                 boxShadow: '0 30px 60px -15px rgba(0,0,0,0.1)',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 overflow: 'hidden'
+               }}>
+                  {/* Avatar Placeholder (Can be replaced with an actual image tag later) */}
+                  <div style={{ fontSize: '5rem', opacity: 0.1 }}>👋</div>
+                  
+                  {/* Floating Tech Badge (Subtle nod to engineering) */}
+                  <div className="animate-float" style={{ position: 'absolute', bottom: '-20px', right: '-20px', background: 'var(--card-bg)', backdropFilter: 'blur(12px)', padding: '1rem', borderRadius: '20px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', border: '1px solid var(--card-border)', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 10px #10b981' }}></div>
+                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-primary)' }}>Open to Work</span>
+                  </div>
+               </div>
             </div>
 
-            {/* Core Arsenal (Tag Cloud) */}
-            <div className="bento-card bento-col-span-4 scroll-reveal" style={{ transitionDelay: '0.1s' }}>
-              <div className="bento-icon" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            {/* Right Column: Narrative Focus */}
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              
+              <h3 style={{ 
+                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', 
+                lineHeight: '1.1', 
+                marginBottom: '2rem', 
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em'
+              }}>
+                Bridging the gap between <span className="text-gradient">design & engineering.</span>
+              </h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+                <p>
+                  I'm a Full Stack Engineer who obsessively focuses on both pixel-perfect frontends and scalable, bulletproof backends. I don't just write code; I look at the holistic product experience to ensure what we build is beautiful, fast, and secure.
+                </p>
+                <p>
+                  I measure my success not by lines of code written, but by the tangible business value and user satisfaction delivered. When I'm not architecting cloud infrastructure or refining CSS micro-interactions, I'm usually exploring new open-source tooling.
+                </p>
               </div>
-              <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Core Arsenal</h4>
-              <ul className="list-tech-tags">
-                <li>TypeScript</li>
-                <li>React / Next.js</li>
-                <li>Node / Express</li>
-                <li>AWS Cloud</li>
-                <li>PostgreSQL</li>
-                <li>Tailwind CSS</li>
-              </ul>
-            </div>
+              
+              <div style={{ marginTop: '3rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <a href="#projects" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.05rem' }}>View Selected Works ↗</a>
+                <a href="#experience" style={{ color: 'var(--text-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+                  Read Experience
+                </a>
+              </div>
 
-            {/* Approach (Bottom Wide) */}
-            <div className="bento-card bento-col-span-4 scroll-reveal" style={{ transitionDelay: '0.2s', background: 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)' }}>
-               <div className="bento-icon" style={{ background: 'rgba(167, 139, 250, 0.1)', color: '#a78bfa' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              </div>
-              <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>Impact Driven</h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>I measure success not by lines of code, but by the tangible business value and user satisfaction delivered.</p>
             </div>
           </div>
        </div>
