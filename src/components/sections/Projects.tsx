@@ -35,20 +35,21 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 						<div style={{ flex: "1 1 400px", padding: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
 								<h3 style={{ fontSize: "1.8rem", color: "var(--text-primary)", margin: 0 }}>
-									Muse Kits <span style={{ color: "var(--text-secondary)", fontWeight: "400", fontSize: "1.2rem" }}>(E-Commerce)</span>
+									Muse Kits <span style={{ color: "var(--text-secondary)", fontWeight: "400", fontSize: "1.2rem" }}>(Formerly known as SmartArtBox)</span>
 								</h3>
 							</div>
 							<p style={{ marginBottom: "1.5rem", fontSize: "1.15rem", color: "var(--text-secondary)", lineHeight: "1.6" }}>
-								A high-traffic e-commerce platform supporting 50,000+ monthly visitors. I developed the entire end-to-end architecture, including a custom one-page checkout, advanced
-								payment routing, and full website redesign that improved load times by 30%.
+								An e-commerce platform for creative subscription kits, serving thousands of monthly visitors. Built a custom one-page checkout with AWS Lambda, DynamoDB, and multiple
+								payment gateways. Led a full site redesign and rebranding, improving UX/UI and site performance, with additional full-stack responsibilities.
 							</p>
 							<div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2rem" }}>
-								<span className="badge">Shopify</span>
+								<span className="badge">Shopify Theme & App Development</span>
+								<span className="badge">JavaScript / Node.js</span>
 								<span className="badge">AWS Lambda</span>
 								<span className="badge">DynamoDB</span>
-								<span className="badge">Chargebee</span>
-								<span className="badge">Node.js</span>
-								<span className="badge">Google Maps API</span>
+								<span className="badge">CI/CD Pipelines</span>
+								<span className="badge">API Integration</span>
+								<span className="badge">Full-Stack Web Development</span>
 							</div>
 
 							<div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "1rem" }}>
@@ -168,11 +169,12 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 							</p>
 							<div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2rem" }}>
 								<span className="badge">SwiftUI</span>
+								<span className="badge">AWS S3</span>
+								<span className="badge">Node.js Backend</span>
+								<span className="badge">Mongodb</span>
 								<span className="badge">PaperKit</span>
 								<span className="badge">PencilKit</span>
-								<span className="badge">Keychain</span>
 								<span className="badge">AVFoundation (Camera)</span>
-								<span className="badge">Node.js Backend</span>
 							</div>
 
 							<div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -192,10 +194,7 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 						<h3 style={{ fontSize: "1.5rem", marginBottom: "2rem", textAlign: "center", color: "var(--text-secondary)" }}>Other Notable Projects</h3>
 						<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
 							{/* Valor Provision */}
-							<div
-								href="https://github.com/ayyoub512/valor-provisions"
-								className="card"
-								style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
+							<div className="card" style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
 								<img
 									src="valor.jpg"
 									alt="Valor Provisions logo"
@@ -221,10 +220,7 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 								</a>
 							</div>
 
-							<div
-								href="https://plateitmeals.com/"
-								className="card"
-								style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
+							<div className="card" style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
 								<img
 									src="plateit.jpg"
 									alt="Plate It Meals logo"
@@ -251,7 +247,7 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 							</div>
 
 							{/* Minor Project C */}
-							<div href="#" className="card" style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
+							<div className="card" style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem", padding: "1.5rem", textDecoration: "none" }}>
 								<img
 									src="upwork.jpg"
 									alt="UpWork logo"
