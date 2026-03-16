@@ -63,7 +63,7 @@ export default function Home() {
   const [modalSlideIndex, setModalSlideIndex] = useState(0);
 
   return (
-    <main>
+    <main style={{ overflowX: 'hidden', width: '100vw' }}>
       <ProjectModal 
         activeScreenshots={activeScreenshots} 
         setActiveScreenshots={setActiveScreenshots} 

@@ -81,7 +81,7 @@ export default function Hero() {
 							</svg>
 							Resume
 						</a>
-						<div style={{ display: "flex", gap: "1rem", marginLeft: "1rem" }}>
+						<div style={{ display: "flex", gap: "1rem" }}>
 							<a href="https://www.linkedin.com/in/ouakkaha" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-secondary)" }} aria-label="LinkedIn">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

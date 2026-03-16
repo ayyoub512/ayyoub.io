@@ -37,16 +37,8 @@ export default function Contact() {
 							</p>
 
 							{/* Links Grid for Rush Scrollers */}
-							<div 
-								style={{
-									marginTop: "2.5rem",
-									display: "grid",
-									gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-									gap: "1rem",
-                                    maxWidth: "800px",
-                                    margin: "0 auto"
-								}}>
-								<a href="mailto:hi@ayyoub.io" style={{ padding: "1.5rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem", textDecoration: "none", transition: "all 0.3s ease", backdropFilter: "blur(10px)" }} onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)";  e.currentTarget.style.transform = "translateY(-5px)"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+							<div className="contact-links-grid">
+								<a href="mailto:hi@ayyoub.io" className="contact-link">
                                     <span style={{ fontSize: "1.8rem" }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24" viewBox="0 -960 960 960" fill="#fff">
                                             <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480v58q0 59-40.5 100.5T740-280q-35 0-66-15t-52-43q-29 29-65.5 43.5T480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480v58q0 26 17 44t43 18q26 0 43-18t17-44v-58q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93h200v80H480Zm85-315q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Z"/>
@@ -55,7 +47,7 @@ export default function Contact() {
 									<span style={{ fontWeight: "600", fontSize: "1rem", color: "#fff" }}>Email Me</span>
 								</a>
 
-								<a href="resume.pdf" target="_blank" rel="noopener noreferrer" style={{ padding: "1.5rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem", textDecoration: "none", transition: "all 0.3s ease", backdropFilter: "blur(10px)" }} onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)";  e.currentTarget.style.transform = "translateY(-5px)"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+								<a href="resume.pdf" target="_blank" rel="noopener noreferrer" className="contact-link">
                                     <span style={{ fontSize: "1.8rem" }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
                                             <path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/>
@@ -64,7 +56,7 @@ export default function Contact() {
 									<span style={{ fontWeight: "600", fontSize: "1rem", color: "#fff" }}>Resume</span>
 								</a>
 
-								<a href="https://www.linkedin.com/in/ouakkaha" target="_blank" rel="noopener noreferrer" style={{ padding: "1.5rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem", textDecoration: "none", transition: "all 0.3s ease", backdropFilter: "blur(10px)" }} onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)";  e.currentTarget.style.transform = "translateY(-5px)"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+								<a href="https://www.linkedin.com/in/ouakkaha" target="_blank" rel="noopener noreferrer" className="contact-link">
                                     <span style={{ fontSize: "1.8rem" }}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +75,7 @@ export default function Contact() {
                                     </span>
 									<span style={{ fontWeight: "600", fontSize: "1rem", color: "#fff" }}>LinkedIn</span>
 								</a>
-								<a href="https://github.com/ayyoub512" target="_blank" rel="noopener noreferrer" style={{ padding: "1.5rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem", textDecoration: "none", transition: "all 0.3s ease", backdropFilter: "blur(10px)" }} onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)";  e.currentTarget.style.transform = "translateY(-5px)"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+								<a href="https://github.com/ayyoub512" target="_blank" rel="noopener noreferrer" className="contact-link">
                                     <span style={{ fontSize: "1.8rem" }}>
                                         <svg xmlns="http://www.w3.org/2000/svg"
 									width="24"
@@ -99,7 +91,7 @@ export default function Contact() {
                                     </span>
 									<span style={{ fontWeight: "600", fontSize: "1rem", color: "#fff" }}>GitHub</span>
 								</a>
-								<a href="https://www.upwork.com/freelancers/~015d699868887682f5" target="_blank" rel="noopener noreferrer" style={{ padding: "1.5rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem", textDecoration: "none", transition: "all 0.3s ease", backdropFilter: "blur(10px)" }} onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)";  e.currentTarget.style.transform = "translateY(-5px)"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+								<a href="https://www.upwork.com/freelancers/~015d699868887682f5" target="_blank" rel="noopener noreferrer" className="contact-link">
                                     <span style={{ fontSize: "1.8rem" }}>
                                         <svg fill="#fff" width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
   <path d="M24.75 17.542c-1.469 0-2.849-0.62-4.099-1.635l0.302-1.432 0.010-0.057c0.276-1.521 1.13-4.078 3.786-4.078 1.99 0 3.604 1.615 3.604 3.604 0 1.984-1.615 3.599-3.604 3.599zM24.75 6.693c-3.385 0-6.016 2.198-7.083 5.818-1.625-2.443-2.865-5.38-3.583-7.854h-3.646v9.484c-0.005 1.875-1.521 3.391-3.396 3.396-1.875-0.005-3.391-1.526-3.396-3.396v-9.484h-3.646v9.484c0 3.885 3.161 7.068 7.042 7.068 3.885 0 7.042-3.182 7.042-7.068v-1.589c0.708 1.474 1.578 2.974 2.635 4.297l-2.234 10.495h3.729l1.62-7.615c1.417 0.906 3.047 1.479 4.917 1.479 4 0 7.25-3.271 7.25-7.266 0-4-3.25-7.25-7.25-7.25z"/>

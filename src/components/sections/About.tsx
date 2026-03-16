@@ -55,14 +55,14 @@ export default function About() {
 							</p>
 						</div>
 
-						<div style={{ marginTop: "3rem", display: "flex", alignItems: "center", gap: "1rem" }}>
-							<a href="resume.pdf" className="btn btn-primary" style={{ padding: "0.4rem 1rem;" }}>
+						<div style={{ marginTop: "3rem", display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+							<a href="resume.pdf" className="btn btn-primary" style={{ padding: "0.6rem 1.2rem", whiteSpace: "nowrap" }}>
 								View Resume ↗
 							</a>
-							<a href="https://www.linkedin.com/in/ouakkaha/" className="badge" style={{ display: "inline-block", textAlign: "center" }}>
+							<a href="https://www.linkedin.com/in/ouakkaha/" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
 								LinkedIn ↗
 							</a>
-							<a href="https://github.com/ayyoub512" className="badge" style={{ display: "inline-block", textAlign: "center" }}>
+							<a href="https://github.com/ayyoub512" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
 								Github ↗
 							</a>
 						</div>

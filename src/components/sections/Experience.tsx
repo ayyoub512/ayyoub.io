@@ -16,14 +16,14 @@ export default function Experience() {
           <h2 className="scroll-reveal"><span className="text-gradient">02.</span> Experience</h2>
           
           {/* Timeline Wrapper */}
-          <div style={{ position: 'relative', paddingLeft: '3rem', maxWidth: '850px' }}>
+          <div className="timeline-wrapper" style={{ position: 'relative', paddingLeft: '3rem', maxWidth: '850px' }}>
              <div className="timeline-line"></div>
              
              <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                
                <div className="card scroll-reveal" style={{ position: 'relative', transitionDelay: '0.1s' }}>
                  {/* Timeline Node */}
-                 <div style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
+                 <div className="timeline-node" style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
                  
                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
                    <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', margin: 0 }}>Full Stack Web Developer <span style={{ color: 'var(--accent-color)' }}>@ Muse Kits</span></h3>
@@ -39,7 +39,7 @@ export default function Experience() {
 
                <div className="card scroll-reveal" style={{ position: 'relative', transitionDelay: '0.2s' }}>
                  {/* Timeline Node */}
-                 <div style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
+                 <div className="timeline-node" style={{ position: 'absolute', left: '-3rem', top: '3rem', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-color)', transform: 'translate(-50%, -50%)', border: '3px solid var(--bg-color)', zIndex: 2, boxShadow: '0 0 10px rgba(59,130,246,0.5)' }}></div>
                  
                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
                    <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', margin: 0 }}>Web Developer (Freelance) <span style={{ color: 'var(--accent-color)' }}>@ Self Employed</span></h3>

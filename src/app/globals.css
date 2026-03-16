@@ -89,6 +89,30 @@ a:hover {
 	position: relative;
 }
 
+@media (max-width: 768px) {
+	.container {
+		padding: 0 1rem;
+	}
+	.section {
+		padding: 2.5rem 0;
+	}
+	.card {
+		padding: 1.5rem;
+	}
+	.timeline-wrapper {
+		padding-left: 1rem !important;
+	}
+	.timeline-node {
+		left: -1rem !important;
+	}
+	.connect-card {
+		flex-direction: row !important;
+		justify-content: center !important;
+		padding: 1rem !important;
+		gap: 0.5rem !important;
+	}
+}
+
 /* Components */
 .btn {
 	display: inline-flex;
@@ -127,6 +151,46 @@ a:hover {
 	border-color: var(--text-secondary);
 	background: rgba(255, 255, 255, 0.05);
 	transform: translateY(-3px);
+}
+
+.contact-links-grid {
+	margin-top: 2.5rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 1rem;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.contact-link {
+	padding: 1.5rem 1rem;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.8rem;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+}
+
+.contact-link:hover {
+	background: rgba(255, 255, 255, 0.08);
+	transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+	.contact-links-grid {
+		grid-template-columns: 1fr;
+	}
+	.contact-link {
+		flex-direction: row;
+		justify-content: center;
+		padding: 1rem 1.2rem;
+	}
 }
 
 /* Glassmorphism */
