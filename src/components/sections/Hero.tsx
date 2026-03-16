@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Hero() {
 	return (
-		<section id="hero" className="section" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: "6rem", textAlign: "center", position: "relative", zIndex: 5 }}>
+		<section id="hero" className="section" style={{ minHeight: "80vh", display: "flex", alignItems: "center", paddingTop: "6rem", textAlign: "center", position: "relative", zIndex: 5 }}>
 			{/* Animated Geometric Web Background */}
 			<div className="hero-geometric-bg">
 				<div className="hero-ring hero-ring-1"></div>
@@ -37,7 +37,7 @@ export default function Hero() {
 				</svg>
 			</div>
 
-			<div className="container" style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+			<div className="container" style={{ position: "relative", marginTop: "100px", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
 				{/* Hero Content */}
 				<div style={{ zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
 					<div className="badge animate-fade-in" style={{ marginBottom: "2rem" }}>
@@ -56,7 +56,7 @@ export default function Hero() {
 						</div>
 					</h1>
 					<p className="animate-fade-in delay-2" style={{ fontSize: "1.3rem", marginBottom: "3rem", maxWidth: "600px", color: "var(--text-secondary)" }}>
-						I&apos;m a Full-Stack Web Developer with 4+ years of experience building high-traffic websites, custom web applications, and scalable cloud architectures.
+						I&apos;m a Full-Stack Web Developer with 4+ years of experience building websites, custom web applications, and scalable cloud architectures.
 					</p>
 					<div className="animate-fade-in delay-3" style={{ display: "flex", gap: "1rem", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
 						<a href="#projects" className="btn btn-primary">
@@ -96,20 +96,6 @@ export default function Hero() {
 									<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
 									<rect x="2" y="9" width="4" height="12"></rect>
 									<circle cx="4" cy="4" r="2"></circle>
-								</svg>
-							</a>
-							<a href="https://www.upwork.com/freelancers/~015d699868887682f5" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-secondary)" }} aria-label="UpWork">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round">
-									<path d="M18.561 13.158c-1.102 0-2.135-.467-3.062-1.227l-1.723 5.488a5.534 5.534 0 0 1-5.3 3.847c-2.956 0-5.361-2.406-5.361-5.362S5.524 10.54 8.476 10.54c1.111 0 2.158.349 3.037.954l1.378-4.39A7.058 7.058 0 0 1 18.561 2.94c3.9 0 7.065 3.167 7.065 7.066s-3.165 7.066-7.065 7.066zM8.476 19.34c-1.897 0-3.44-1.543-3.44-3.44s1.543-3.44 3.44-3.44c.485 0 .942.102 1.36.286l-1.353 4.31a3.52 3.52 0 0 1-2.007.284zm10.085-7.79c-2.348 0-4.25-1.9-4.25-4.25S16.213 3.05 18.561 3.05 22.81 4.95 22.81 7.3s-1.896 4.25-4.25 4.25z"></path>
 								</svg>
 							</a>
 						</div>

@@ -3,30 +3,28 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+	variable: "--font-geist-sans",
+	subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+	variable: "--font-geist-mono",
+	subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
-  title: "DevPortfolio | Full Stack Engineer",
-  description: "A premium digital portfolio showcasing modern, performant web development.",
+	title: "Ayyoub | Full Stack Developer",
+	description: "Ayyoub – Full-Stack Web Developer with 4+ years of experience building high-traffic websites, custom web apps, and scalable cloud architectures."
 };
 
 export default function RootLayout({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+		</html>
+	);
 }
