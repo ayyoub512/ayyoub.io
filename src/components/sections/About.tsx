@@ -50,13 +50,13 @@ export default function About() {
 								architecture.
 							</p>
 							<p>
-								I care about delivering solutions that not only work flawlessly but also create meaningful user experiences. When I&apos;m not coding, I explore new open-source tools
+								I care about delivering solutions that not only work but also create meaningful user experiences. When I&apos;m not coding, I explore new open-source tools
 								and experiment with modern web technologies.
 							</p>
 						</div>
 
 						<div style={{ marginTop: "3rem", display: "flex", alignItems: "center", gap: "1rem" }}>
-							<a href="resume.pdf" className="btn btn-primary" style={{ padding: ".4rem 1rem;" }}>
+							<a href="resume.pdf" className="btn btn-primary" style={{ padding: "0.4rem 1rem;" }}>
 								View Resume ↗
 							</a>
 							<a href="https://www.linkedin.com/in/ouakkaha/" className="badge" style={{ display: "inline-block", textAlign: "center" }}>
