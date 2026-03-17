@@ -50,19 +50,19 @@ export default function About() {
 								architecture.
 							</p>
 							<p>
-								I care about delivering solutions that not only work but also create meaningful user experiences. When I&apos;m not coding, I explore new open-source tools
-								and experiment with modern web technologies.
+								I care about delivering solutions that not only work but also create meaningful user experiences. When I&apos;m not coding, I explore new open-source tools and
+								experiment with modern web technologies.
 							</p>
 						</div>
 
 						<div style={{ marginTop: "3rem", display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
-							<a href="resume.pdf" className="btn btn-primary" style={{ padding: "0.6rem 1.2rem", whiteSpace: "nowrap" }}>
+							<a href="resume.pdf" target="_blank" className="btn btn-primary" style={{ padding: "0.6rem 1.2rem", whiteSpace: "nowrap" }}>
 								View Resume ↗
 							</a>
-							<a href="https://www.linkedin.com/in/ouakkaha/" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
+							<a href="https://www.linkedin.com/in/ouakkaha/" target="_blank" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
 								LinkedIn ↗
 							</a>
-							<a href="https://github.com/ayyoub512" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
+							<a href="https://github.com/ayyoub512" target="_blank" className="badge" style={{ display: "inline-block", textAlign: "center", whiteSpace: "nowrap" }}>
 								Github ↗
 							</a>
 						</div>

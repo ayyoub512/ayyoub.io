@@ -184,7 +184,9 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 								<button onClick={() => setActiveScreenshots(vibeSyncScreenshots)} className="btn btn-outline" style={{ display: "none" }}>
 									View Screenshots
 								</button>
-								<span style={{ alignSelf: "center", color: "var(--text-secondary)", fontSize: "0.9rem", fontStyle: "italic" }}>Private Beta</span>
+								<a href="https://github.com/ayyoub512/slc-captstone-project-ios-app" target="_blank" className="btn btn-outline">
+									View on Github
+								</a>
 							</div>
 						</div>
 					</div>
@@ -215,7 +217,7 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 									<span className="badge">TypeScript</span>
 								</div>
 
-								<a href="https://github.com/ayyoub512/valor-provisions" className="badge" style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
+								<a href="https://github.com/ayyoub512/valor-provisions" target="_blank" className="badge" style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
 									View on Github ↗
 								</a>
 							</div>
@@ -241,7 +243,7 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 									<span className="badge">Web navigation</span>
 								</div>
 
-								<a href="https://plateitmeals.com/" className="badge" style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
+								<a href="https://plateitmeals.com/" className="badge" target="_blank" style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
 									Visit Website ↗
 								</a>
 							</div>
@@ -261,7 +263,11 @@ export default function Projects({ setActiveScreenshots }: ProjectsProps) {
 									and feedback.
 								</p>
 
-								<a href="https://www.upwork.com/freelancers/~015d699868887682f5" className="badge" style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
+								<a
+									href="https://www.upwork.com/freelancers/~015d699868887682f5"
+									target="_blank"
+									className="badge"
+									style={{ marginTop: "0.5rem", display: "inline-block", textAlign: "center" }}>
 									UpWork Profile ↗
 								</a>
 							</div>
